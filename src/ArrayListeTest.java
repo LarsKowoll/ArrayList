@@ -1,0 +1,87 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+
+class ArrayListeTest {
+
+	ArrayListe<String> liste;
+
+	public ArrayListeTest() {
+		liste = new ArrayListe<String>();
+		liste.hinzufuegen("eins");
+		liste.hinzufuegen("zwei");
+		liste.hinzufuegen("drei");
+		liste.hinzufuegen("vier");
+		liste.hinzufuegen("fünf");
+	}
+
+//	@Test
+//	void testMain() {
+//		fail("Not yet implemented");
+//	}
+
+//	@Test
+//	void testArrayListe() {
+//		fail("Not yet implemented");
+//	}
+
+	@Test
+	void testHinzufuegen() {
+		liste.hinzufuegen("eins");
+		liste.hinzufuegen("zwei");
+		liste.hinzufuegen("drei");
+		liste.hinzufuegen("vier");
+		liste.hinzufuegen("fünf");
+		liste.hinzufuegen("sechs");
+		liste.hinzufuegen("sieben");
+		liste.hinzufuegen("acht");
+		liste.hinzufuegen("neun");
+		liste.hinzufuegen("zehn");
+		liste.hinzufuegen("elf");
+		assertEquals(10, liste.getAnzahlElemente());
+	}
+
+	@Test
+	void testGet() {
+		assertEquals("eins", liste.get(0));
+		assertEquals(null, liste.get(5));
+	}
+
+	@Test
+	void testEntfernen() {
+		liste.entfernen("vier");
+		assertEquals(4, liste.getAnzahlElemente());
+
+	}
+
+	@Test
+	void testEntferneElementAnIndex() {
+		liste.entferneElementAnIndex(2);
+		assertEquals(4, liste.getAnzahlElemente());
+	}
+
+	@Test
+	void testGetAnzahlElemente() {
+		assertEquals(5, liste.getAnzahlElemente());
+		liste.hinzufuegen("sechs");
+		assertEquals(6, liste.getAnzahlElemente());
+	}
+
+	@Test
+	void testToString() {
+		assertEquals("einszweidreivierfünf", liste.toString());
+
+	}
+
+	@Test
+	void testGetKleinstesElement() {
+		fail("Not yet implemented");
+	}
+
+//	@Test
+//	void testSetAnzahlElemente() {
+//		fail("Not yet implemented");
+//	}
+
+}
