@@ -1,7 +1,8 @@
+import junit.framework.ComparisonCompactor;
 
-public class ArrayListe<T> {
+public class ArrayListe<T extends Comparable<T>> {
 	private int anzahlElemente;
-	private Object[] elemente;
+	private static Object[] elemente;
 
 	public static void main(String[] args) {
 		ArrayListe<String> liste = new ArrayListe<String>();
@@ -10,7 +11,10 @@ public class ArrayListe<T> {
 		liste.hinzufuegen("drei");
 		liste.hinzufuegen("vier");
 		liste.hinzufuegen("fünf");
+		liste.entferneElementAnIndex(2);
 		liste.toString();
+		liste.getKleinstesElement();
+		ArrayListeZahl.zahlAmAnfang(elemente);
 	}
 
 	public ArrayListe() {
@@ -84,19 +88,38 @@ public class ArrayListe<T> {
 	}
 
 	public T getKleinstesElement() {
-		return null;
+		if (elemente.length == 0) {
+			return null;
+		}
+
+		T kleinstesElement = (T) elemente[0];
+
+		for (int i = 1; i < elemente.length; i++) {
+			if (elemente[i] != null) {
+				int j = kleinstesElement.compareTo((T) elemente[i]);
+				if (j < 0) {
+					kleinstesElement = (T) elemente[i];
+				}
+			}
+
+		}
+		String x = kleinstesElement.toString();
+		System.out.println(x);
+
+		return kleinstesElement;
 
 	}
 
 	private void verschieben(int index) {
-		for (int i = index; index < elemente.length; i++, index++) {
-			elemente[i] = elemente[index];
+		for (int i = index + 1; i < elemente.length; i++, index++) {
+			elemente[index] = elemente[i];
 
-			if (index == elemente.length - 1) {
-				elemente[index] = null;
+			if (i == elemente.length - 1) {
+				elemente[i] = null;
 			}
 
 		}
+
 	}
 
 	public void setAnzahlElemente(int anzahlElemente) {

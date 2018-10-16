@@ -50,8 +50,12 @@ class ArrayListeTest {
 
 	@Test
 	void testEntfernen() {
+		liste.entfernen("vir");
+		assertEquals(5, liste.getAnzahlElemente());
 		liste.entfernen("vier");
 		assertEquals(4, liste.getAnzahlElemente());
+		assertEquals("fünf", liste.get(3));
+		
 
 	}
 
@@ -76,7 +80,7 @@ class ArrayListeTest {
 
 	@Test
 	void testGetKleinstesElement() {
-		fail("Not yet implemented");
+		assertEquals("zwei", liste.getKleinstesElement());
 	}
 
 //	@Test
