@@ -63,7 +63,7 @@ class ArrayListeTest {
 	void testEntferneElementAnIndex() {
 		liste.entferneElementAnIndex(2);
 		assertEquals(4, liste.getAnzahlElemente());
-		assertEquals("vier", liste.get(2))
+		assertEquals("vier", liste.get(2));
 	}
 
 	@Test
