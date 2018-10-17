@@ -6,8 +6,6 @@
  * @version 1.0
  */
 
-import junit.framework.ComparisonCompactor;
-
 public class ArrayListe<T extends Comparable<T>> {
 	private int anzahlElemente;
 	private static Object[] elemente;
