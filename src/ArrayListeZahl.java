@@ -1,3 +1,7 @@
+/**
+ * @author Philip Zirfaß
+ * @author Lars Kowoll
+ */
 
 public class ArrayListeZahl extends Number {
 
@@ -9,6 +13,9 @@ public class ArrayListeZahl extends Number {
 
 	}
 
+	/**
+	 * Prüft ob am Index 0 eine Zahl steht für ein Array
+	 */
 	public static boolean zahlAmAnfang(Object[] elemente) {
 		boolean result = false;
 		if (elemente[0] != null)
