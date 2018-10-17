@@ -39,7 +39,7 @@ class ArrayListeTest {
 		liste.hinzufuegen("neun");
 		liste.hinzufuegen("zehn");
 		liste.hinzufuegen("elf");
-		assertEquals(10, liste.getAnzahlElemente());
+		assertEquals(16, liste.getAnzahlElemente());
 	}
 
 	@Test
@@ -74,7 +74,7 @@ class ArrayListeTest {
 
 	@Test
 	void testToString() {
-		assertEquals("einszweidreivierfünf", liste.toString());
+		assertEquals("eins\nzwei\ndrei\nvier\nfünf\n", liste.toString());
 
 	}
 

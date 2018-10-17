@@ -9,7 +9,7 @@ public class ArrayListeZahl extends Number {
 
 	}
 
-	public static <T> boolean zahlAmAnfang(T[] elemente) {
+	public static boolean zahlAmAnfang(Object[] elemente) {
 		boolean result = false;
 		if (elemente[0] != null)
 		{
