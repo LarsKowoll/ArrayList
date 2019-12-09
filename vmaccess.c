@@ -15,8 +15,9 @@
 /*
  * functions
  */
-static int calculatePage(int adress);
+static int calculatePage(int address);
 static int checkGcount(void);
+static int getOffset(int address);
 
 /*
  * static variables
@@ -54,7 +55,6 @@ static void vmem_init(void) {
 
     /* attach shared memory to vmem */
 	vmem = shmat(shm_id, NULL, 0); // 0 Flag for reading and wirting
-	TEST_AND_EXIT_ERRNO(vmem == -1, "Attachment failed");
 }
 
 /**
@@ -86,6 +86,7 @@ static void vmem_put_page_into_mem(int address) {
 
 int vmem_read(int address) {
 	int page = calculatePage(address);
+	int offset = getOffset(address);
 	vmem_put_page_into_mem(address);
 
 	checkGcount();
@@ -99,6 +100,7 @@ int vmem_read(int address) {
 
 void vmem_write(int address, int data) {
 	int page = calculatePage(address);
+	int offset = getOffset(address);
 	vmem_put_page_into_mem(address);
 
 	checkGcount();
@@ -110,10 +112,14 @@ void vmem_write(int address, int data) {
 	vmem->mainMemory[(vmem->pt[page].frame * VMEM_PAGESIZE) + offset] = data;
 }
 
-static int calculatePage(int adress) {
+static int calculatePage(int address) {
 	int page = address / VMEM_PAGESIZE;
 	TEST_AND_EXIT(page < 0 || pageN >= VMEM_NPAGES, (stderr, "Page is not in range\n"));
 	return page;
+}
+
+static int getOffset(int address) {
+	return (address % VMEM_PAGESIZE);
 }
 
 static int checkGcount() {
