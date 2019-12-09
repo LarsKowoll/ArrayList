@@ -18,6 +18,7 @@
 static int calculatePage(int address);
 static int getOffset(int address);
 static void checkGcount(void);
+static void checkVmemInit(void);
 
 /*
  * static variables
@@ -73,6 +74,7 @@ static void vmem_init(void) {
  *  @return     void
  ****************************************************************************************/
 static void vmem_put_page_into_mem(int address) {
+	checkVmemInit();
 	int page = calculatePage(address);
 
 	if ((vmem->pt[page].flags & PTF_PRESENT) == 0) {
@@ -129,6 +131,12 @@ static void checkGcount() {
 		message.cmd = CMD_TIME_INTER_VAL;
 		message.g_count = g_count;
 		sendMsgToMmanager(message);
+	}
+}
+
+static void checkVmemInit() {
+	if (vmem == NULL) {
+		vmem_init();
 	}
 }
 
