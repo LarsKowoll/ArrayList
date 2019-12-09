@@ -16,8 +16,8 @@
  * functions
  */
 static int calculatePage(int address);
-static int checkGcount(void);
 static int getOffset(int address);
+static void checkGcount(void);
 
 /*
  * static variables
@@ -114,7 +114,7 @@ void vmem_write(int address, int data) {
 
 static int calculatePage(int address) {
 	int page = address / VMEM_PAGESIZE;
-	TEST_AND_EXIT(page < 0 || pageN >= VMEM_NPAGES, (stderr, "Page is not in range\n"));
+	TEST_AND_EXIT(page < 0 || page >= VMEM_NPAGES, (stderr, "Page is not in range\n"));
 	return page;
 }
 
@@ -122,7 +122,7 @@ static int getOffset(int address) {
 	return (address % VMEM_PAGESIZE);
 }
 
-static int checkGcount() {
+static void checkGcount() {
 	g_count++; // increase before check
 	if (g_count % TIME_WINDOW == 0) {
 		struct msg message;
